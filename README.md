@@ -1,25 +1,47 @@
-# LLaVA Image Assistant (Tkinter + LLaVA)
-
-Upload any photo, type any question, and LLaVA answers live. Runs locally through Ollama.
-
-## What to install
-1. Python 3.10+  (Tkinter comes with Python on Windows/Mac; Linux: `sudo apt install python3-tk`)
-2. Ollama         https://ollama.com/download
-3. LLaVA model    `ollama pull llava`      (one time, about 4.7 GB)
-4. Python packages:
-       pip install -r requirements.txt
-   (ollama = talks to LLaVA, Pillow = shows JPG/PNG previews inside Tkinter)
-
-## Run
-1. Start Ollama (open the Ollama app, or run `ollama serve`).
-2. In this folder:  `python app.py`
-
-## Use
-1. Click **Upload Image**.
-2. Type your question in the **Your question** box at the bottom, press **Enter** or **Ask**.
-3. The answer streams live in the right panel. Ask follow-up questions about the same image.
-4. **Clear Chat** resets the conversation. Uploading a new image also starts a fresh chat.
-
-## Troubleshooting
-- "Could not reach LLaVA": Ollama isn't running, or run `ollama pull llava`.
-- First answer is slow: the model is loading into memory. Later answers are faster.
+LLaVA Tkinter – AI Image Assistant
+A desktop application that lets users upload an image and ask natural-language questions about it. It uses the LLaVA vision-language model, served locally through Ollama, with a Tkinter graphical interface. All processing runs on the user's machine, so no images are sent to the cloud.
+Features
+Upload images (PNG, JPG, JPEG, WEBP, BMP, GIF) and ask any question about them
+Live, streaming answers displayed word by word
+Region zoom: drag a box over a small or distant detail; the app crops, enlarges and sharpens it before analysis
+Model selector for installed LLaVA variants (`llava`, `llava:13b`, `llava:34b`)
+Optional follow-up mode that remembers earlier questions
+Prompt design that discourages guessing: the model states when a detail is unclear
+Fully offline after setup
+Tech Stack
+Component	Purpose
+Python 3.10+	Core language
+Tkinter	Desktop GUI
+Ollama	Local model runtime
+LLaVA	Vision-language model
+Pillow	Image preview, cropping and preprocessing
+Installation
+Install Python 3.10+ and Ollama.
+Download a model:
+```bash
+   ollama pull llava          # ~4.7 GB, fastest
+   ollama pull llava:13b      # ~8 GB, more accurate (16 GB+ RAM recommended)
+   ```
+Clone the repository and install dependencies:
+```bash
+   git clone https://github.com/meghanacheppulla/LLAVA_TKINTER.git
+   cd LLAVA_TKINTER
+   pip install -r requirements.txt
+   ```
+Usage
+```bash
+python app.py
+```
+Click Upload Image.
+(Optional) Drag on the image to zoom into a specific area.
+Type a question in the Your question box and press Enter.
+Example questions: "What is the colour of the image?", "Is this person wearing an ID card?", "Describe the scene."
+Limitations
+LLaVA is a compact local model. It can make mistakes on very small details, crowded scenes or exact text. Use the zoom feature and a larger model for better accuracy, and verify important results manually.
+Project Structure
+```
+LLAVA_TKINTER/
+├── app.py
+├── requirements.txt
+└── README.md
+```
